@@ -1,5 +1,5 @@
 /vendor/
 composer.json
-
-/nbproject/private/
 .idea/workspace.xml
+.idea/vcs.xml
+.ignore
