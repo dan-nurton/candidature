@@ -5,49 +5,81 @@ namespace Candidature\Entity;
 
 
 class State {
-    private $test = [];
-    private $interview = [];
-    private $candidatureState = [];
+    private $candidacyFolder = false;
+    private $test = false;
+    private $interview = false;
+    private $candidacyAccept = false;
+    private $candidacyRefused = false;
 
     /**
-     * @return array
+     * @return bool
      */
-    public function getTest() {
+    public function isCandidacyFolder() {
+        return $this->candidacyFolder;
+    }
+
+    /**
+     * @param bool $candidacyFolder
+     */
+    public function setCandidacyFolder($candidacyFolder) {
+        $this->candidacyFolder = $candidacyFolder;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTest() {
         return $this->test;
     }
 
     /**
-     * @param array $test
+     * @param bool $test
      */
     public function setTest($test) {
         $this->test = $test;
     }
 
     /**
-     * @return array
+     * @return bool
      */
-    public function getInterview() {
+    public function isInterview() {
         return $this->interview;
     }
 
     /**
-     * @param array $interview
+     * @param bool $interview
      */
     public function setInterview($interview) {
         $this->interview = $interview;
     }
 
     /**
-     * @return array
+     * @return bool
      */
-    public function getCandidatureState() {
-        return $this->candidatureState;
+    public function isCandidacyAccept() {
+        return $this->candidacyAccept;
     }
 
     /**
-     * @param array $candidatureState
+     * @param bool $candidacyAccept
      */
-    public function setCandidatureState($candidatureState) {
-        $this->candidatureState = $candidatureState;
+    public function setCandidacyAccept($candidacyAccept) {
+        $this->candidacyAccept = $candidacyAccept;
     }
+
+    /**
+     * @return bool
+     */
+    public function isCandidacyRefused() {
+        return $this->candidacyRefused;
+    }
+
+    /**
+     * @param bool $candidacyRefused
+     */
+    public function setCandidacyRefused($candidacyRefused) {
+        $this->candidacyRefused = $candidacyRefused;
+    }
+
+
 }
