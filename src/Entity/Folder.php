@@ -1,6 +1,6 @@
 <?php
     namespace Candidature\Entity;
-    
+
 class Folder {
     private $lastName;
     private $firstname;
