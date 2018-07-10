@@ -1,6 +1,5 @@
 /vendor/
 composer.json
-<<<<<<< HEAD
 .idea/workspace.xml
-=======
->>>>>>> b7604a3ff0fefaaef6f7ed9e0de3829dc1d6b111
+.ignore
+
