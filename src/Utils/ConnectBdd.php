@@ -16,5 +16,7 @@ class ConnectBdd {
         catch (PDOException $e){
             die('Erreur : '.$e->getMessage());
         }
+
+        return $bdd;
     }
 }
