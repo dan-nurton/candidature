@@ -1,7 +1,5 @@
 <?php
     namespace Candidature\Entity;
-   use Candidature\Entity\Folder;
-    
 
 class Folder {
     private $lastName;
