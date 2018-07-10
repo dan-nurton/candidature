@@ -1,5 +1,7 @@
 <?php
     namespace Candidature\Entity;
+   use Candidature\Entity\Folder;
+    
 
 class Folder {
     private $lastName;
@@ -11,6 +13,8 @@ class Folder {
     private $state = null;
     
     function __construct($datas) {
+        $state =  new State();
+        $this->setState($state);
          foreach ($datas as $key => $value) {
             // On récupère le nom du setter correspondant à l'attribut.
             $method = 'set' . ucfirst($key);

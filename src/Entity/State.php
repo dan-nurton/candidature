@@ -5,49 +5,54 @@ namespace Candidature\Entity;
 
 
 class State {
-    private $test = [];
-    private $interview = [];
-    private $candidatureState = [];
+    private $candidacyFolder = false;
+    private $test = false;
+    private $interview = false;
+    private $candidacyAccepteed = false;
+    private $candidacyRefused = false;
+    
+    
+    function getCandidacyFolder() {
+        return $this->candidacyFolder;
+    }
 
-    /**
-     * @return array
-     */
-    public function getTest() {
+    function getTest() {
         return $this->test;
     }
 
-    /**
-     * @param array $test
-     */
-    public function setTest($test) {
-        $this->test = $test;
-    }
-
-    /**
-     * @return array
-     */
-    public function getInterview() {
+    function getInterview() {
         return $this->interview;
     }
 
-    /**
-     * @param array $interview
-     */
-    public function setInterview($interview) {
+    function getCandidacyAccepteed() {
+        return $this->candidacyAccepteed;
+    }
+
+    function getCandidacyRefused() {
+        return $this->candidacyRefused;
+    }
+
+    function setCandidacyFolder($candidacyFolder) {
+        $this->candidacyFolder = $candidacyFolder;
+    }
+
+    function setTest($test) {
+        $this->test = $test;
+    }
+
+    function setInterview($interview) {
         $this->interview = $interview;
     }
 
-    /**
-     * @return array
-     */
-    public function getCandidatureState() {
-        return $this->candidatureState;
+    function setCandidacyAccepteed($candidacyAccepteed) {
+        $this->candidacyAccepteed = $candidacyAccepteed;
     }
 
-    /**
-     * @param array $candidatureState
-     */
-    public function setCandidatureState($candidatureState) {
-        $this->candidatureState = $candidatureState;
+    function setCandidacyRefused($candidacyRefused) {
+        $this->candidacyRefused = $candidacyRefused;
     }
+
+
+    
+    
 }
