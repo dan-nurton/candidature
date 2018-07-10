@@ -2,128 +2,80 @@
     namespace Candidature\Entity;
 
 class Folder {
-    private $surname;
+    private $lastName;
     private $firstname;
-    private $candidateDate;
+    private $folderCreation;
     private $career;
     private $phoneNumber;
-    private $email;
-    private $state;
-    private $folderNumber;
+    private $mail;
+    private $state = null;
+    
+    function __construct($datas) {
+         foreach ($datas as $key => $value) {
+            // On récupère le nom du setter correspondant à l'attribut.
+            $method = 'set' . ucfirst($key);
 
-    /**
-     * @return mixed
-     */
-    public function getSurname() {
-        return $this->surname;
+            // Si le setter correspondant existe.
+            if (method_exists($this, $method)) {
+                // On appelle le setter.
+                $this->$method($value);
+            }
+        }
+    }
+    function getLastName() {
+        return $this->lastName;
     }
 
-    /**
-     * @param mixed $surname
-     */
-    public function setSurname($surname) {
-        $this->surname = $surname;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFirstname() {
+    function getFirstName() {
         return $this->firstname;
     }
 
-    /**
-     * @param mixed $firstname
-     */
-    public function setFirstname($firstname) {
-        $this->firstname = $firstname;
+    function getFolderCreation() {
+        return $this->folderCreation;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCandidateDate() {
-        return $this->candidateDate;
-    }
-
-    /**
-     * @param mixed $candidateDate
-     */
-    public function setCandidateDate($candidateDate) {
-        $this->candidateDate = $candidateDate;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCareer() {
+    function getCareer() {
         return $this->career;
     }
 
-    /**
-     * @param mixed $career
-     */
-    public function setCareer($career) {
-        $this->career = $career;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPhoneNumber() {
+    function getPhoneNumber() {
         return $this->phoneNumber;
     }
 
-    /**
-     * @param mixed $phoneNumber
-     */
-    public function setPhoneNumber($phoneNumber) {
-        $this->phoneNumber = $phoneNumber;
+    function getMail() {
+        return $this->mail;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getEmail() {
-        return $this->email;
-    }
-
-    /**
-     * @param mixed $email
-     */
-    public function setEmail($email) {
-        $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getState() {
+    function getState() {
         return $this->state;
     }
 
-    /**
-     * @param mixed $state
-     */
-    public function setState($state) {
+    function setLastName($lastName) {
+        $this->lastName = $lastName;
+    }
+
+    function setFirstname($firstname) {
+        $this->firstname = $firstname;
+    }
+
+    function setFolderCreation($folderCreation) {
+        $this->folderCreation = $folderCreation;
+    }
+
+    function setCareer($career) {
+        $this->career = $career;
+    }
+
+    function setPhoneNumber($phoneNumber) {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+    function setMail($mail) {
+        $this->mail = $mail;
+    }
+
+    function setState($state) {
         $this->state = $state;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getFolderNumber() {
-        return $this->folderNumber;
-    }
-
-    /**
-     * @param mixed $folderNumber
-     */
-    public function setFolderNumber($folderNumber) {
-        $this->folderNumber = $folderNumber;
-    }
-
-
-
 
 }
