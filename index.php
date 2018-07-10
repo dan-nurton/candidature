@@ -20,6 +20,3 @@
             echo ('Page not found !');
             break;
     }
-
-
-
