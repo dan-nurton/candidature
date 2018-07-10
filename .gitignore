@@ -1,5 +1,6 @@
 /vendor/
 composer.json
+composer.lock
 .idea/workspace.xml
 .idea/vcs.xml
 .ignore
