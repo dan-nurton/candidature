@@ -4,11 +4,7 @@
 class User {
     private $identifier;
     private $folder;
-    
-    
-    
-    
-    
+  
 
     /**
      * @return mixed
