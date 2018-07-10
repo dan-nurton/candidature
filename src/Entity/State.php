@@ -8,7 +8,7 @@ class State {
     private $candidacyFolder = false;
     private $test = false;
     private $interview = false;
-    private $candidacyAccepteed = false;
+    private $candidacyAccepted = false;
     private $candidacyRefused = false;
     
     
@@ -24,8 +24,8 @@ class State {
         return $this->interview;
     }
 
-    function getCandidacyAccepteed() {
-        return $this->candidacyAccepteed;
+    function getCandidacyAccepted() {
+        return $this->candidacyAccepted;
     }
 
     function getCandidacyRefused() {
@@ -44,8 +44,8 @@ class State {
         $this->interview = $interview;
     }
 
-    function setCandidacyAccepteed($candidacyAccepteed) {
-        $this->candidacyAccepteed = $candidacyAccepteed;
+    function setCandidacyAccepted($candidacyAccepted) {
+        $this->candidacyAccepted = $candidacyAccepted;
     }
 
     function setCandidacyRefused($candidacyRefused) {

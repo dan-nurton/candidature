@@ -16,20 +16,21 @@ class FolderDAO {
         $this->database = $database;
     }
 
-
     public function insertData($folder)
     {
         $db = $this->database;
-        $q = $db->prepare('INSERT INTO folder VALUES (:lastname, :firstname, :folderCreation, :career, :phoneNumber, :mail, :state)');
+
+        $q = $db->prepare('INSERT INTO folder(lastname, firstname, foldercreation, career, phonenumber, mail, id_state) 
+                          VALUES (:lastname, :firstname, :folderCreation, :career, :phoneNumber, :mail, :idState)');
         $q->bindValue(':lastname', $folder->getLastName());
-        $q->bindValue(':firstname', $folder->getFirsName());
+        $q->bindValue(':firstname', $folder->getFirstName());
         $q->bindValue(':folderCreation', $folder->getFolderCreation());
         $q->bindValue(':career', $folder->getCareer());
         $q->bindValue(':phoneNumber', $folder->getPhoneNumber());
         $q->bindValue(':mail', $folder->getMail());
-        $q->bindValue(':state', $folder->getState());
+        $q->bindValue(':idState', $folder->getIdState());
+
         $q->execute();
-        $q->closeCursor();
 
     }
 
