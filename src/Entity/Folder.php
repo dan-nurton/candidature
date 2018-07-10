@@ -3,16 +3,15 @@
 
 class Folder {
     private $lastName;
-    private $firstname;
+    private $firstName;
     private $folderCreation;
     private $career;
     private $phoneNumber;
     private $mail;
-    private $state = null;
+    private $state = 0;
     
     function __construct($datas) {
-        $state =  new State();
-        $this->setState($state);
+       
          foreach ($datas as $key => $value) {
             // On récupère le nom du setter correspondant à l'attribut.
             $method = 'set' . ucfirst($key);
@@ -56,7 +55,7 @@ class Folder {
         $this->lastName = $lastName;
     }
 
-    function setFirstname($firstname) {
+    function setFirstName($firstname) {
         $this->firstname = $firstname;
     }
 

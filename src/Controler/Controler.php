@@ -16,7 +16,7 @@ class Controler {
             $tabDate[] = $ligne[1];
             $tabLastName[] = $ligne[3];
             $tabFirstName[] = $ligne[5];
-            $tabPhone[] = $ligne[15];
+            $tabPhone[] = $num+$ligne[15];
             $tabMail[] = $ligne[16];
             $tabCareer[] = $ligne[54];
         }
