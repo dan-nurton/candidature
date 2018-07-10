@@ -1,17 +1,25 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
+<?php
+    require 'vendor/autoload.php';
+
+    //Initialisation Twig
+    $loader = new Twig_Loader_Filesystem(__DIR__ . '/src/Resources/View');
+    $twig = new Twig_Environment($loader);
+
+    //routing
+    $page = 'home';
+    if(isset($_GET['p'])){
+        $page = $_GET['p'];
+    }
+
+    //router
+    switch($page){
+        case 'home':
+            echo $twig->render('home.html.twig');
+            break;
+        default:
+            echo ('Page not found !');
+            break;
+    }
+
+
+
