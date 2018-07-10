@@ -3,16 +3,15 @@
 
 class Folder {
     private $lastName;
-    private $firstname;
+    private $firstName;
     private $folderCreation;
     private $career;
     private $phoneNumber;
     private $mail;
-    private $state = null;
+    private $idState = 1;
     
     function __construct($datas) {
-        $state =  new State();
-        $this->setState($state);
+
          foreach ($datas as $key => $value) {
             // On récupère le nom du setter correspondant à l'attribut.
             $method = 'set' . ucfirst($key);
@@ -29,7 +28,7 @@ class Folder {
     }
 
     function getFirstName() {
-        return $this->firstname;
+        return $this->firstName;
     }
 
     function getFolderCreation() {
@@ -48,16 +47,16 @@ class Folder {
         return $this->mail;
     }
 
-    function getState() {
-        return $this->state;
+    function getIdState() {
+        return $this->idState;
     }
 
     function setLastName($lastName) {
         $this->lastName = $lastName;
     }
 
-    function setFirstname($firstname) {
-        $this->firstname = $firstname;
+    function setFirstName($firstName) {
+        $this->firstName = $firstName;
     }
 
     function setFolderCreation($folderCreation) {
@@ -76,8 +75,8 @@ class Folder {
         $this->mail = $mail;
     }
 
-    function setState($state) {
-        $this->state = $state;
+    function setIdState($idState) {
+        $this->idState = $idState;
     }
 
 }
