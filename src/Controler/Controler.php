@@ -1,9 +1,9 @@
 <?php
 
 namespace Candidature\Controler;
-use Candidature\Entity;
-use Candidature\Utils;
-use Candidature\DAO;
+use Candidature\Utils\ConnectBdd;
+use Candidature\DAO\FolderDAO;
+use Candidature\Entity\Folder;
 
 class Controler {
 
@@ -29,6 +29,7 @@ class Controler {
         $bdd = new ConnectBdd();
         $connection = $bdd->connect();
         $folderDao = new FolderDAO($connection);
+        $folderDao->insertData($folder);
     }
 
     public function getFolder() {

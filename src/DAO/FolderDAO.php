@@ -7,6 +7,9 @@ use Candidature\Entity\Folder;
 class FolderDAO {
     private $database;
     private $folder;
+    
+    
+  
 
     /**
      * FolderDAO constructor.
