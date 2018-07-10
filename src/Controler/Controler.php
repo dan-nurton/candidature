@@ -1,6 +1,9 @@
 <?php
 
 namespace Candidature\Controler;
+use Candidature\Entity;
+use Candidature\Utils;
+use Candidature\DAO;
 
 class Controler {
 
@@ -14,9 +17,10 @@ class Controler {
             $tabLastName[] = $ligne[3];
             $tabFirstName[] = $ligne[5];
             $tabPhone[] = $ligne[15];
+            $tabMail[] = $ligne[16];
             $tabCareer[] = $ligne[54];
         }
-        $datas = array('folderCreation' => $tabDate[1], 'lastName' => $tabLastName[1], 'firstName' => $tabFirstName [1], 'phoneNumber' => $num .= $tabPhone[1], 'career' => $tabCareer[1]);
+        $datas = array('folderCreation' => $tabDate[1], 'lastName' => $tabLastName[1], 'firstName' => $tabFirstName [1], 'phoneNumber' => $num .= $tabPhone[1], 'career' => $tabCareer[1], 'mail'=>$tabMail[1]);
         $this->sendJson($datas);
     }
 
