@@ -20,8 +20,8 @@ class FolderDAO {
     {
         $db = $this->database;
 
-        $q = $db->prepare('INSERT INTO folder(lastname, firstname, foldercreation, career, phonenumber, mail, id_state) 
-                          VALUES (:lastname, :firstname, :folderCreation, :career, :phoneNumber, :mail, :idState)');
+        $q = $db->prepare('INSERT INTO folder(lastname, firstname, foldercreation, career, phonenumber, mail, id_state, login) 
+                          VALUES (:lastname, :firstname, :folderCreation, :career, :phoneNumber, :mail, :idState, :login)');
         $q->bindValue(':lastname', $folder->getLastName());
         $q->bindValue(':firstname', $folder->getFirstName());
         $q->bindValue(':folderCreation', $folder->getFolderCreation());
@@ -29,6 +29,7 @@ class FolderDAO {
         $q->bindValue(':phoneNumber', $folder->getPhoneNumber());
         $q->bindValue(':mail', $folder->getMail());
         $q->bindValue(':idState', $folder->getIdState());
+        $q->bindValue(':login', $folder->getLogin());
 
         $q->execute();
 

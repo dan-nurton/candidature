@@ -50,7 +50,8 @@ function randomPassword($length, $count, $characters) {
             'career' => $tabCareer[1],
             'mail' => $tabMail[1]);
         
-         $login = randomPassword(10,1,"lower_case,upper_case,numbers");
+        $random = randomPassword(10,1,"lower_case,upper_case,numbers");
+        $login = $random[0];
         $folder = new Folder($datas,$login);
         $bdd = new ConnectBdd();
         $connection = $bdd->connect();
