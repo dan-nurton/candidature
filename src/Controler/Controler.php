@@ -31,6 +31,11 @@ class Controler {
         $folderDao = new FolderDAO($connection);
         $folderDao->insertData($folder);
     }
+    
+    public function sendMail(){
+        
+    }
+    
 
     public function getFolder() {
         

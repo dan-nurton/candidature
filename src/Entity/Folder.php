@@ -1,5 +1,5 @@
 <?php
-    namespace Candidature\Entity;
+   namespace Candidature\Entity;
 
 class Folder {
     private $lastName;
@@ -8,7 +8,7 @@ class Folder {
     private $career;
     private $phoneNumber;
     private $mail;
-     private $idState = 1;
+    private $idState = 1;
 
     function __construct($datas) {
          foreach ($datas as $key => $value) {
