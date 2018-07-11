@@ -52,8 +52,8 @@ class Controler {
     }
 
     public function sendJson($datas) {
-        $login = randomPassword(10,1,"lower_case,upper_case,numbers,special_symbols");
-        $folder = new Folder($datas,$login);
+        $login = randomPassword(10, 1, "lower_case,upper_case,numbers,special_symbols");
+        $folder = new Folder($datas, $login);
         $bdd = new ConnectBdd();
         $connection = $bdd->connect();
         $folderDao = new FolderDAO($connection);
@@ -70,25 +70,33 @@ class Controler {
         $symbols["numbers"] = '1234567890';
         $symbols["special_symbols"] = '!?~@#-_+<>[]{}';
 
-        $characters = split(",", $characters); 
+        $characters = split(",", $characters);
         foreach ($characters as $key => $value) {
-            $used_symbols .= $symbols[$value]; 
+            $used_symbols .= $symbols[$value];
         }
-        $symbols_length = strlen($used_symbols) - 1; 
+        $symbols_length = strlen($used_symbols) - 1;
 
         for ($p = 0; $p < $count; $p++) {
             $pass = '';
             for ($i = 0; $i < $length; $i++) {
-                $n = rand(0, $symbols_length); 
-                $pass .= $used_symbols[$n]; 
+                $n = rand(0, $symbols_length);
+                $pass .= $used_symbols[$n];
             }
             $passwords[] = $pass;
         }
         return $passwords;
     }
 
-    public function sendMail() {
-        
+    public function sendMail($mail='aurelien.latour@hotmail.fr',$login) {
+        $destinataire = $mail;
+        $sujet = 'E-mail de de l\'Adrar';
+        $contenu = 'Vous trouverez ci-joint votre radiation de formation';
+        $contenu .= '<p><strong>Email</strong>: ' . $mail . '</p>';
+        $contenu .= '<p><strong>Password</strong>: ' . $login . '</p>';
+        $contenu .= '</body></html>';
+        $headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+        mail($destinataire, $sujet, $contenu, $headers);
     }
 
     public function getFolder() {

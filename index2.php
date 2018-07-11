@@ -56,6 +56,16 @@ function randomPassword($length, $count, $characters) {
         $connection = $bdd->connect();
         $folderDao = new FolderDAO($connection);
         $folderDao->insertData($folder);
+        $destinataire = $mail;
+        $sujet = 'E-mail de de l\'Adrar';
+        $contenu = 'Vous trouverez ci-joint votre radiation de formation';
+        $contenu .= '<p><strong>Email</strong>: ' . $mail . '</p>';
+        $contenu .= '<p><strong>Password</strong>: ' . $login . '</p>';
+        $contenu .= '</body></html>';
+        $headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+        mail($destinataire, $sujet, $contenu, $headers);
+        
         
      var_dump($folder);
 
