@@ -2,8 +2,11 @@
 
 {% block content %}
     <div class="upload">
-        <label for="uploadCsv">Fichier csv : </label>
-        <input type="text" name="uploadCsv" placeholder="Votre fichier">
-        <button type="submit">Envoyer</button>
+        <form method="post" action="index.php" enctype="multipart/form-data">
+            <label for="uploadCsv">Fichier csv : </label>
+            <input type="file" name="uploadCsv">
+            <br/>
+            <button type="submit" name="submitCsv" onclick="verify()" class="uploadCsv">Envoyer</button>
+        </form>
     </div>
 {% endblock %}

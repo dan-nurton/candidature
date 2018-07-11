@@ -1,0 +1,22 @@
+{% extends 'index.html.twig' %}
+
+{% block content %}
+    <section id="formulaires">
+        <div class="inscription">
+            <h3>Connexion</h3>
+            <form method="post">
+                <div class="center">
+                    <label>Votre identifiant</label>
+                    <input type="text" name="pseudo">
+                </div>
+
+                <div class="center">
+                    <label >Votre mot de passe</label>
+                    <input type="password" name="password">
+                </div>
+                <button type="submit" name="submit">Se connecter</button>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}
