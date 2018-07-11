@@ -7,6 +7,28 @@ use Candidature\Entity\Folder;
 
 class Controler {
 
+    public function verifyInputIsNotEmpty(){
+        if (isset($_POST['submitCsv'])){
+            if(isset($_POST['uploadCsv'])){
+                return true;
+            }
+        }
+    }
+
+    public function verifyFile(){
+        $verifyInput = $this->verifyInputIsNotEmpty();
+        //Extensions autorisées
+        $validExtension = ['csv'];
+        //Met tout la chaine en minuscule, ignore le 1er caractere de la chaine et ajoute un point a la fin
+        $uploadExtension = strtolower(  substr(  strrchr($_FILES['uploadCsv']['name'], '.')  ,1)  );
+        if($verifyInput === true && in_array($uploadExtension, $validExtension)){
+            echo 'Ok';
+        }
+        else{
+            echo 'Fichier incorrect';
+        }
+    }
+
     public function parseCsv($csv) {
         $csv = new SplFileObject('Projet_application_de_candidature.csv', 'r');
         $csv->setFlags(SplFileObject::READ_CSV);
