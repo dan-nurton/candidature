@@ -2,10 +2,15 @@
     namespace Candidature\Entity;
 
 class User {
-    private $identifier;
-    private $folder;
+    private $login;
+    
   
+  
+    
+    
+    
 
+    
     /**
      * @return mixed
      */
