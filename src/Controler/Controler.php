@@ -4,33 +4,33 @@ namespace Candidature\Controler;
 use Candidature\Utils\ConnectBdd;
 use Candidature\DAO\FolderDAO;
 use Candidature\Entity\Folder;
+use SplFileObject;
 
 class Controler {
 
     public function verifyInputIsNotEmpty(){
         if (isset($_POST['submitCsv'])){
-            if(isset($_POST['uploadCsv'])){
-                return true;
-            }
+                return $this->verifyFile();
         }
     }
 
     public function verifyFile(){
-        $verifyInput = $this->verifyInputIsNotEmpty();
         //Extensions autorisées
         $validExtension = ['csv'];
-        //Met tout la chaine en minuscule, ignore le 1er caractere de la chaine et ajoute un point a la fin
+        //Met toute la chaine en minuscule, ignore le 1er caractere de la chaine et ajoute un point a la fin
         $uploadExtension = strtolower(  substr(  strrchr($_FILES['uploadCsv']['name'], '.')  ,1)  );
-        if($verifyInput === true && in_array($uploadExtension, $validExtension)){
-            echo 'Ok';
+        if(in_array($uploadExtension, $validExtension)){
+            var_dump($_FILES['uploadCsv']['name']);
+            echo 'success';
+            //$this->parseCsv($_FILES['uploadCsv']['name']);
         }
         else{
-            echo 'Fichier incorrect';
+            echo 'Failed';
         }
     }
 
-    public function parseCsv($csv) {
-        $csv = new SplFileObject('Projet_application_de_candidature.csv', 'r');
+    public function parseCsv($file) {
+        $csv = new SplFileObject($file, 'r');
         $csv->setFlags(SplFileObject::READ_CSV);
         $csv->setCsvControl(';');
         $num = "0";
@@ -52,6 +52,10 @@ class Controler {
         $connection = $bdd->connect();
         $folderDao = new FolderDAO($connection);
         $folderDao->insertData($folder);
+    }
+
+    public function sendMail(){
+
     }
 
     public function getFolder() {

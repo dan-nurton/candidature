@@ -1,13 +1,9 @@
 <?php
     require 'vendor/autoload.php';
-    use Candidature\Entity\Folder;
-    use Candidature\Controler\Controler;
 
     //Initialisation Twig
     $loader = new Twig_Loader_Filesystem(__DIR__ . '/src/Resources/View');
     $twig = new Twig_Environment($loader);
-
-    $controler = new Controler();
 
     //routing
     $page = 'home';

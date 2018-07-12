@@ -1,5 +1,3 @@
-class Controler{
-    function verifyFile(){
-        $(.uploadCsv)
-    }
-}
+$(document).ready(function(){
+    console.log($('ca marche'));
+})
