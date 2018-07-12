@@ -11,7 +11,7 @@ class ConnectBdd {
 
             $bdd =  new PDO('mysql:host=localhost;dbname=adrarcandidature;charset=utf8',
                 'root',
-                '',
+                'adrar',
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         }
         catch (PDOException $e){

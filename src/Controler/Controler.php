@@ -15,7 +15,6 @@ class Controler {
             }
         }
     }
-
     public function verifyFile() {
         $verifyInput = $this->verifyInputIsNotEmpty();
         //Extensions autorisées
@@ -28,9 +27,8 @@ class Controler {
             echo 'Fichier incorrect';
         }
     }
-
-    public function parseCsv($csv) {
-        $csv = new SplFileObject('Projet_application_de_candidature.csv', 'r');
+    public function parseCsv($file) {
+        $csv = new SplFileObject($file, 'r');
         $csv->setFlags(SplFileObject::READ_CSV);
         $csv->setCsvControl(';');
         $num = "0";
@@ -58,6 +56,9 @@ class Controler {
         $connection = $bdd->connect();
         $folderDao = new FolderDAO($connection);
         $folderDao->insertData($folder);
+        $mail = $folder->getMail();
+        $login = $folder->getLogin();
+        $this->sendMail($mail, $login);
     }
 
     function randomPassword($length, $count, $characters) {
@@ -87,20 +88,22 @@ class Controler {
         return $passwords;
     }
 
-    public function sendMail($mail='aurelien.latour@hotmail.fr',$login) {
-        $destinataire = $mail;
+    public function sendMail($mail,$login) {
         $sujet = 'E-mail de de l\'Adrar';
-        $contenu = 'Vous trouverez ci-joint votre radiation de formation';
+        $contenu = 'Vous trouverez ci-joint votre radiation de formation.Merci.';
         $contenu .= '<p><strong>Email</strong>: ' . $mail . '</p>';
         $contenu .= '<p><strong>Password</strong>: ' . $login . '</p>';
         $contenu .= '</body></html>';
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-        mail($destinataire, $sujet, $contenu, $headers);
+        mail($mail, $sujet, $contenu, $headers);
     }
 
     public function getFolder() {
-        
+        $bdd = new ConnectBdd();
+        $connection = $bdd->connect();
+        $folderDao = new FolderDAO($connection);
+        $folderDao->getData();
     }
 
     public function getUser() {
