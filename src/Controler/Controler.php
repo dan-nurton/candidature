@@ -5,28 +5,33 @@ namespace Candidature\Controler;
 use Candidature\Utils\ConnectBdd;
 use Candidature\DAO\FolderDAO;
 use Candidature\Entity\Folder;
+use SplFileObject;
 
 class Controler {
 
-    public function verifyInputIsNotEmpty() {
-        if (isset($_POST['submitCsv'])) {
-            if (isset($_POST['uploadCsv'])) {
-                return true;
-            }
+    public function verifyInputIsNotEmpty(){
+        if (isset($_POST['submitCsv'])){
+                return $this->verifyFile();
         }
     }
-    public function verifyFile() {
-        $verifyInput = $this->verifyInputIsNotEmpty();
+
+    public function verifyFile(){
         //Extensions autorisées
         $validExtension = ['csv'];
-        //Met tout la chaine en minuscule, ignore le 1er caractere de la chaine et ajoute un point a la fin
-        $uploadExtension = strtolower(substr(strrchr($_FILES['uploadCsv']['name'], '.'), 1));
-        if ($verifyInput === true && in_array($uploadExtension, $validExtension)) {
-            echo 'Ok';
-        } else {
-            echo 'Fichier incorrect';
+        //Met toute la chaine en minuscule, ignore le 1er caractere de la chaine et ajoute un point a la fin
+        $uploadExtension = strtolower(  substr(  strrchr($_FILES['uploadCsv']['name'], '.')  ,1)  );
+        if(in_array($uploadExtension, $validExtension)){
+            var_dump($_FILES['uploadCsv']['name']);
+            echo 'success';
+            //$this->parseCsv($_FILES['uploadCsv']['name']);
+        }
+        else{
+            echo 'Failed';
+
         }
     }
+
+
     public function parseCsv($file) {
         $csv = new SplFileObject($file, 'r');
         $csv->setFlags(SplFileObject::READ_CSV);
@@ -61,32 +66,6 @@ class Controler {
         $this->sendMail($mail, $login);
     }
 
-    function randomPassword($length, $count, $characters) {
-        $symbols = array();
-        $passwords = array();
-        $used_symbols = '';
-        $pass = '';
-        $symbols["lower_case"] = 'abcdefghijklmnopqrstuvwxyz';
-        $symbols["upper_case"] = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $symbols["numbers"] = '1234567890';
-        $symbols["special_symbols"] = '!?~@#-_+<>[]{}';
-
-        $characters = split(",", $characters);
-        foreach ($characters as $key => $value) {
-            $used_symbols .= $symbols[$value];
-        }
-        $symbols_length = strlen($used_symbols) - 1;
-
-        for ($p = 0; $p < $count; $p++) {
-            $pass = '';
-            for ($i = 0; $i < $length; $i++) {
-                $n = rand(0, $symbols_length);
-                $pass .= $used_symbols[$n];
-            }
-            $passwords[] = $pass;
-        }
-        return $passwords;
-    }
 
     public function sendMail($mail,$login) {
         $sujet = 'E-mail de de l\'Adrar';
@@ -97,7 +76,19 @@ class Controler {
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
         mail($mail, $sujet, $contenu, $headers);
-    }
+
+            for ($p = 0; $p < $count; $p++) {
+                $pass = '';
+                for ($i = 0; $i < $length; $i++) {
+                    $n = rand(0, $symbols_length);
+                    $pass .= $used_symbols[$n];
+                }
+                $passwords[] = $pass;
+            }
+            return $passwords;
+        }
+
+   
 
     public function getFolder() {
         $bdd = new ConnectBdd();
