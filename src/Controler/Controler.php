@@ -13,26 +13,23 @@ class Controler {
         if (isset($_POST['submitCsv'])){
                 return $this->verifyFile();
         }
+        
     }
 
     public function verifyFile(){
-        //Extensions autorisées
-        $validExtension = ['csv'];
-        //Met toute la chaine en minuscule, ignore le 1er caractere de la chaine et ajoute un point a la fin
-        $uploadExtension = strtolower(  substr(  strrchr($_FILES['uploadCsv']['name'], '.')  ,1)  );
-        if(in_array($uploadExtension, $validExtension)){
-            var_dump($_FILES['uploadCsv']['name']);
-            echo 'success';
-            //$this->parseCsv($_FILES['uploadCsv']['name']);
-        }
-        else{
-            echo 'Failed';
-
-        }
+        $uploads_dir = '/Upload';
+        var_dump($_FILES);
+       if($_FILES['uploadCsv']['error'] == UPLOAD_ERR_OK){
+           $tmp_name = $_FILES['uploadCsv']['tmp_name'];
+           $name = $_FILES['uploadCsv']['name'];
+           move_uploaded_file($tmp_name, $uploads_dir.'/'.$name);
+           var_dump($tmp_name);
+       }
     }
 
 
     public function parseCsv($file) {
+        var_dump($file);
         $csv = new SplFileObject($file, 'r');
         $csv->setFlags(SplFileObject::READ_CSV);
         $csv->setCsvControl(';');

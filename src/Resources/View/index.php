@@ -32,7 +32,10 @@
 
         <?php
         if (isset($_POST['submitCsv'])){
+            //var_dump($_FILES['uploadCsv']['name']);
                 $controler->verifyInputIsNotEmpty();
+                
+              
         }
         ?>
     </html>
