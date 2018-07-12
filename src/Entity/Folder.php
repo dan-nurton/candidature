@@ -1,5 +1,5 @@
 <?php
-    namespace Candidature\Entity;
+   namespace Candidature\Entity;
 
 class Folder {
     private $lastName;
@@ -8,9 +8,12 @@ class Folder {
     private $career;
     private $phoneNumber;
     private $mail;
-     private $idState = 1;
+    private $idState = 1;
+    private $login;
 
-    function __construct($datas) {
+    
+    function __construct($datas,$login) {
+         $this->setLogin($login);
          foreach ($datas as $key => $value) {
             // On récupère le nom du setter correspondant à l'attribut.
             $method = 'set' . ucfirst($key);
@@ -22,11 +25,26 @@ class Folder {
             }
         }
     }
-    function getLastName() {
-        return $this->lastName;
+    function getLogin() {
+        return $this->login;
     }
 
-    function getFirstName() {
+    function setLogin($login) {
+        $this->login = $login;
+    }
+
+        function getLastName() {
+        return $this->lastName;
+    }
+    function getUser() {
+        return $this->user;
+    }
+
+    function setUser($user) {
+        $this->user = $user;
+    }
+
+        function getFirstName() {
         return $this->firstName;
     }
 
